@@ -28,7 +28,7 @@ export function TaskListContainer() {
           marginBottom: "16px",
         }}
       >
-        <h2 style={{ margin: 0 }}>
+        <h2 style={{ margin: 0, color: "#2053a5" }}>
           Tareas ({filteredCount}/{totalCount})
         </h2>
       </div>

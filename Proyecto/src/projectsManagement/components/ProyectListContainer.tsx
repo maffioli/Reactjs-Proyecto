@@ -29,7 +29,7 @@ export function ProyectListContainer() {
           marginBottom: "16px",
         }}
       >
-        <h2 style={{ margin: 0 }}>
+        <h2 style={{ margin: 0, color: "#a01a52" }}>
           Tareas ({filteredCount}/{totalCount})
         </h2>
       </div>
