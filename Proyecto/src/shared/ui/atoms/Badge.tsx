@@ -1,7 +1,10 @@
 import React from "react";
 
+/** Propiedades para el componente de etiqueta (Badge) */
 interface BadgeProps {
+  /** Contenido de texto o elementos a mostrar dentro de la etiqueta */
   children: React.ReactNode;
+  /** Estilos CSS adicionales para personalizar colores o bordes */
   style?: React.CSSProperties;
 }
 

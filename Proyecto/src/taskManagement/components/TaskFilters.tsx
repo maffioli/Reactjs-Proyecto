@@ -1,5 +1,5 @@
-import type { TaskStatus } from "../types";
-import { Button } from "../../shared/ui/atoms/Button";
+import type { TaskStatus } from "@task/types";
+import { Button } from "@/shared/ui/atoms/Button";
 
 type FilterValue = TaskStatus | "all";
 

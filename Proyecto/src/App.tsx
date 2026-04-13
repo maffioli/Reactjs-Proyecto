@@ -1,43 +1,34 @@
 import { ProyectBoard } from "./projectsManagement/components/ProyectBoard";
 import { ProyectListContainer } from "./projectsManagement/components/ProyectListContainer";
-import { Layout } from "./shared/components/Layout";
-import Tabs from "./shared/components/Tabs";
-import { TaskBoard } from "./taskManagement/components/TaskBoard";
-import { TaskListContainer } from "./taskManagement/components/TaskListContainer";
-import { StatisticsDashboard } from "./statistics/components/StatisticsDashboard";
+import { Layout } from "@/shared/components/Layout";
+import { Tabs } from "@/shared/ui";
+import { TaskBoard } from "@/taskManagement/components/TaskBoard";
+import { TaskListContainer } from "@/taskManagement/components/TaskListContainer";
+import { StatisticsDashboard } from "@/statistics/components/StatisticsDashboard";
 
 function App() {
   return (
     <Layout>
       <Tabs defaultTab="board">
-        <Tabs.List>
+        <Tabs.Header>
           <Tabs.Tab id="board">Pizarra</Tabs.Tab>
           <Tabs.Tab id="tasks">Mis Tareas</Tabs.Tab>
           <Tabs.Tab id="projects">Proyectos</Tabs.Tab>
           <Tabs.Tab id="stats">Estadísticas</Tabs.Tab>
-        </Tabs.List>
-        <Tabs.Panels>
-          <Tabs.Panel id="board">
-            <h2
-              style={{ color: "#94a3b8", textAlign: "center" }}
-              >Mis Tareas</h2>
+        </Tabs.Header>
+          <Tabs.Content id="board">
             <TaskBoard />
-
-            <h2
-              style={{ color: "#94a3b8", textAlign: "center" }}
-              >Mis Proyectos</h2>
             <ProyectBoard />
-          </Tabs.Panel>
-          <Tabs.Panel id="tasks">
+          </Tabs.Content>
+          <Tabs.Content id="tasks">
             <TaskListContainer />
-          </Tabs.Panel>
-          <Tabs.Panel id="projects">
+          </Tabs.Content>
+          <Tabs.Content id="projects">
             <ProyectListContainer />
-          </Tabs.Panel>
-          <Tabs.Panel id="stats">
+          </Tabs.Content>
+          <Tabs.Content id="stats">
             <StatisticsDashboard />
-          </Tabs.Panel>
-        </Tabs.Panels>
+          </Tabs.Content>
       </Tabs>
     </Layout>
   )

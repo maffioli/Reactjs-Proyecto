@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-import type { Proyect } from "../types";
+import type { Proyect } from "@projects/types";
 import { ProyectCard } from "./ProyectCard";
 import { ProyectFilters } from "./ProyectFilters";
 import { fixturesProyects } from "../utils/fixturesProyect";

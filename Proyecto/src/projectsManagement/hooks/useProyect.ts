@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
-import type { Proyect, ProyectStatus } from '../types';
+import type { Proyect, ProyectStatus } from '@projects/types';
 import { fixturesProyects } from '../utils/fixturesProyect';
-
 
 export const useProyect = () => {
   const [proyects, setProyects] = useState<Proyect[]>(fixturesProyects);

@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { fixturesTasks } from "../utils/fixturesTask";
-import type { Task } from "../types";
+import type { Task } from "@task/types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
 

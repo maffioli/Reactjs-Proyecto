@@ -1,12 +1,19 @@
 import React from "react";
-import { Badge } from "../atoms/Badge";
+import { Badge } from "@/shared/ui/atoms/Badge";
 
+/** Propiedades para la tarjeta reutilizable del sistema */
 interface CardProps {
+  /** Título descriptivo de la tarjeta */
   title: string;
+  /** Elemento que se muestra como etiqueta (usualmente un Badge) */
   badge: React.ReactNode;
+  /** Texto principal que explica el contenido de la tarjeta */
   description: string;
+  /** Color hexadecimal para la barra lateral izquierda (ej: para prioridades) */
   accentColor?: string;
+  /** Contenido a mostrar en la esquina inferior izquierda */
   footerLeft?: React.ReactNode;
+  /** Contenido a mostrar en la esquina inferior derecha */
   footerRight?: React.ReactNode;
 }
 

@@ -1,6 +1,6 @@
 import type { Task, TaskStatus, TaskPriority } from "../types";
-import { useTaskDateStatus } from "../hooks/useTaskDateStatus";
-import { Card } from "../../shared/ui/molecules/Card";
+import { useTaskDateStatus } from "@/taskManagement/hooks/useTaskDateStatus";
+import { Card } from "@/shared/ui/molecules/Card";
 
 const priorityColors: Record<TaskPriority, string> = {
   high          : "#ce1515ab",
@@ -16,8 +16,11 @@ const statusLabels: Record<TaskStatus, string> = {
   cancelled     : "Cancelada",
 };
 
+/** Propiedades necesarias para renderizar la tarjeta de una Tarea */
 interface TaskCardProps {
+  /** El objeto completo con la información de la Tarea */
   task          : Task;
+  /** Función opcional que se dispara al cambiar el estado de la tarea */
   onStatusChange?: (taskId: string, newStatus: TaskStatus) => void;
 }
 

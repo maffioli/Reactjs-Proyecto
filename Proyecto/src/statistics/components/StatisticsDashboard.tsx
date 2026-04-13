@@ -1,4 +1,4 @@
-import { useStatistics } from "../hooks/useStatistics";
+import { useStatistics } from "@/statistics/hooks/useStatistics";
 
 export const StatisticsDashboard = () => {
   const { projects, tasks, overallProgress } = useStatistics();

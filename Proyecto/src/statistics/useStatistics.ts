@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { fixturesTasks } from '../../taskManagement/utils/fixturesTask';
-import { fixturesProyects as projectFixtures } from '../../projectsManagement/utils/fixturesProyect';
+import { fixturesTasks } from '@/taskManagement/utils/fixturesTask';
+import { fixturesProyects as projectFixtures } from '@projects/utils/fixturesProyect';
 import type { GlobalStatistics } from '@statistics/types';
 
 export const useStatistics = (): GlobalStatistics => {

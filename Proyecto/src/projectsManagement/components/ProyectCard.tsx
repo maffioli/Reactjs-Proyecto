@@ -1,6 +1,6 @@
 import { useProyectDateStatus } from "../hooks/useProyectDateStatus";
-import type { Proyect, ProyectPriority, ProyectStatus } from "../types";
-import { Card } from "../../shared/ui/molecules/Card";
+import type { Proyect, ProyectPriority, ProyectStatus } from "@projects/types";
+import { Card } from "@/shared/ui/molecules/Card";
 
 const priorityColors: Record<ProyectPriority, string> = {
   emergency     : "#ce1515ab",
@@ -18,8 +18,11 @@ const statusLabels: Record<ProyectStatus, string> = {
   completed     : "Completado",
 };
 
+/** Propiedades necesarias para renderizar la tarjeta de un Proyecto */
 interface ProyectCardProps {
+  /** El objeto completo con la información del Proyecto */
   proyect       : Proyect;
+  /** Función opcional que se dispara al cambiar el estado del proyecto */
   onStatusChange?: (proyectId: string, newStatus: ProyectStatus) => void;
 }
 

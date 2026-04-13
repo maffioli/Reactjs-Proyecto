@@ -1,5 +1,5 @@
-import type { ProyectStatus } from "../types";
-import { Button } from "../../shared/ui/atoms/Button";
+import type { ProyectStatus } from "@projects/types";
+import { Button } from "@/shared/ui//atoms/Button";
 
 type FilterValue = ProyectStatus | "all";
 
@@ -18,8 +18,11 @@ const filters: FilterOption[] = [
   { value: "completed", label: "Completado" },
 ];
 
+/** Propiedades para el selector de filtros de proyectos */
 interface ProyectFiltersProps {
+  /** El valor del filtro que está seleccionado actualmente */
   current: FilterValue;
+  /** Función que recibe el nuevo filtro seleccionado */
   onChange: (value: FilterValue) => void;
 }
 

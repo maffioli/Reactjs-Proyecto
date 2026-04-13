@@ -1,7 +1,10 @@
 import React from "react";
 
+/** Propiedades para el botón básico del sistema (átomo) */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Indica si el botón debe mostrarse con el estilo de 'seleccionado' */
   isActive?: boolean;
+  /** Texto o elementos que van dentro del botón */
   children: React.ReactNode;
 }
 
