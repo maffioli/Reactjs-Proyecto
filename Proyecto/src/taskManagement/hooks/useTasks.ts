@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
 import type { Task, TaskStatus } from '../types';
-import { fixtures } from '../utils/fixtures';
+import { fixturesTasks } from '../utils/fixturesTask';
 
 export const useTasks = () => {
-  const [tasks, setTasks] = useState<Task[]>(fixtures);
+  const [tasks, setTasks] = useState<Task[]>(fixturesTasks);
 
   const updateTaskStatus = (taskId: string, newStatus: TaskStatus) => {
     setTasks((prevTasks) =>

@@ -1,10 +1,10 @@
 import { useState, useMemo } from 'react';
 import type { Proyect, ProyectStatus } from '../types';
-import { fixtures } from '../utils/fixtures';
+import { fixturesProyects } from '../utils/fixturesProyect';
 
 
 export const useProyect = () => {
-  const [proyects, setProyects] = useState<Proyect[]>(fixtures);
+  const [proyects, setProyects] = useState<Proyect[]>(fixturesProyects);
 
   const updateProyectStatus = (proyectId: string, newStatus: ProyectStatus) => {
     setProyects((prevProyects) =>

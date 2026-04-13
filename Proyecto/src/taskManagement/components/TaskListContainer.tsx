@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { fixtures } from "../utils/fixtures";
+import { fixturesTasks } from "../utils/fixturesTask";
 import type { Task } from "../types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
@@ -7,7 +7,7 @@ import { TaskFilters } from "./TaskFilters";
 type FilterValue = "all" | Task["status"];
 
 export function TaskListContainer() {
-  const [tasks] = useState<Task[]>(fixtures);
+  const [tasks] = useState<Task[]>(fixturesTasks);
   const [filter, setFilter] = useState<FilterValue>("all");
 
   const filteredTasks = useMemo(

@@ -69,7 +69,7 @@ export function TaskCard({ task }: TaskCardProps) {
           color: "#94a3b8",
         }}
       >
-        <span>{task.project}</span>
+        <span>{task.project.title}</span>
         <div style={{ display: "flex", gap: "12px" }}>
           <span><strong>Creado:</strong> {formattedCreatedAt}</span>
           <span style={{ color: deadlineColor }}>

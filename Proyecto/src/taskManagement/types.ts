@@ -1,3 +1,5 @@
+import type { Proyect } from "../projectsManagement/types";
+
 export const TASK_STATUSES = {
   TODO          : "todo",
   IN_PROGRESS   : "in_progress",
@@ -21,7 +23,7 @@ export interface Task {
   description   : string;
   status        : TaskStatus;
   priority      : TaskPriority;
-  project       : string;
+  project       : Proyect;
   deadline      : string;
   createdAt     : string;
 }

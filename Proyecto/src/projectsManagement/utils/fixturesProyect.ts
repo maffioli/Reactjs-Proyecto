@@ -1,6 +1,6 @@
 import type { Proyect } from "../types";
 
-export const fixtures: Proyect[] = [
+export const fixturesProyects: Proyect[] = [
   {
     id: "p1",
     title: "Starship Odyssey",

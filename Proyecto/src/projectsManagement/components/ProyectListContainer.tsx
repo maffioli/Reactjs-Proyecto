@@ -3,12 +3,12 @@ import { useState, useMemo } from "react";
 import type { Proyect } from "../types";
 import { ProyectCard } from "./ProyectCard";
 import { ProyectFilters } from "./ProyectFilters";
-import { fixtures } from "../utils/fixtures";
+import { fixturesProyects } from "../utils/fixturesProyect";
 
 type FilterValue = "all" | Proyect["status"];
 
 export function ProyectListContainer() {
-  const [proyects] = useState<Proyect[]>(fixtures);
+  const [proyects] = useState<Proyect[]>(fixturesProyects);
   const [filter, setFilter] = useState<FilterValue>("all");
 
   const filteredProyects = useMemo(
