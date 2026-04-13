@@ -1,4 +1,5 @@
 import type { ProyectStatus } from "../types";
+import { Button } from "../../shared/ui/atoms/Button";
 
 type FilterValue = ProyectStatus | "all";
 
@@ -26,22 +27,13 @@ export function ProyectFilters({ current, onChange }: ProyectFiltersProps) {
   return (
     <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
       {filters.map((filt) => (
-        <button
+        <Button
           key={filt.value}
           onClick={() => onChange(filt.value)}
-          style={{
-            padding: "6px 16px",
-            borderRadius: "20px",
-            border:
-              current === filt.value ? "2px solid #3b82f6" : "1px solid #e2e8f0",
-            backgroundColor: current === filt.value ? "#eff6ff" : "#fff",
-            color: current === filt.value ? "#3b82f6" : "#64748b",
-            cursor: "pointer",
-            fontSize: "14px",
-          }}
+          isActive={current === filt.value}
         >
           {filt.label}
-        </button>
+        </Button>
       ))}
     </div>
   );
