@@ -1,3 +1,5 @@
+import { ProyectBoard } from "./projectsManagement/components/ProyectBoard";
+import { ProyectListContainer } from "./projectsManagement/components/ProyectListContainer";
 import { Layout } from "./shared/components/Layout";
 import Tabs from "./shared/components/Tabs";
 import { TaskBoard } from "./taskManagement/components/TaskBoard";
@@ -19,19 +21,17 @@ function App() {
               style={{ color: "#94a3b8", textAlign: "center" }}
               >Mis Tareas</h2>
             <TaskBoard />
+
             <h2
               style={{ color: "#94a3b8", textAlign: "center" }}
               >Mis Proyectos</h2>
+            <ProyectBoard />
           </Tabs.Panel>
           <Tabs.Panel id="tasks">
             <TaskListContainer />
           </Tabs.Panel>
           <Tabs.Panel id="projects">
-            <p
-              style={{ color: "#94a3b8", padding: "32px", textAlign: "center" }}
-            >
-              Próximamente: Módulo de Proyectos
-            </p>
+            <ProyectListContainer />
           </Tabs.Panel>
           <Tabs.Panel id="stats">
             <p

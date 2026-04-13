@@ -14,9 +14,9 @@ export const useTasks = () => {
   };
 
   // Podríamos agregar filtros por prioridad o proyecto aquí
-  const todoTasks = useMemo(() => tasks.filter(t => t.status === 'todo'), [tasks]);
-  const inProgressTasks = useMemo(() => tasks.filter(t => t.status === 'in_progress'), [tasks]);
-  const doneTasks = useMemo(() => tasks.filter(t => t.status === 'done'), [tasks]);
+  const todoTasks = useMemo(() => tasks.filter(t => t.status === 'todo').slice(0, 2), [tasks]);
+  const inProgressTasks = useMemo(() => tasks.filter(t => t.status === 'in_progress').slice(0, 2), [tasks]);
+  const doneTasks = useMemo(() => tasks.filter(t => t.status === 'done').slice(0, 2), [tasks]);
 
   return { tasks, updateTaskStatus, todoTasks, inProgressTasks, doneTasks };
 };

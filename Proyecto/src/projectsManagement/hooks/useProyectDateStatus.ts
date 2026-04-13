@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-export const useTaskDateStatus = (createdAt: string, deadline: string, status: string) => {
-
+export const useProyectDateStatus = (createdAt: string, deadline: string, status: string) => {
   const TODAY = new Date();
   const DELETED = (3 * 24 * 60 * 60 * 1000); // 3 días en milisegundos
 

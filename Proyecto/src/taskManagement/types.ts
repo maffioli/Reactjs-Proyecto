@@ -5,16 +5,15 @@ export const TASK_STATUSES = {
   DONE          : "done",
   CANCELLED     : "cancelled",
 } as const;
+export type TaskPriority    = (typeof TASK_PRIORITIES)[keyof typeof TASK_PRIORITIES];
 
 export const TASK_PRIORITIES = {
   LOW           : "low",
   MEDIUM        : "medium",
   HIGH          : "high",
 } as const;
+export type TaskStatus      = (typeof TASK_STATUSES)[keyof typeof TASK_STATUSES];
 
-// Tipos derivados de las constantes — así evitamos duplicar definiciones
-export type TaskStatus    = (typeof TASK_STATUSES)[keyof typeof TASK_STATUSES];
-export type TaskPriority  = (typeof TASK_PRIORITIES)[keyof typeof TASK_PRIORITIES];
 
 export interface Task {
   id            : string;

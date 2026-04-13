@@ -1,38 +1,39 @@
-import type { Task, TaskStatus, TaskPriority } from "../types";
-import { useTaskDateStatus } from "../hooks/useTaskDateStatus";
+import { useProyectDateStatus } from "../hooks/useProyectDateStatus";
+import type { Proyect, ProyectPriority, ProyectStatus } from "../types";
 
-
-const priorityColors: Record<TaskPriority, string> = {
-  high          : "#ce1515ab",
-  medium        : "#daa13ea1",
-  low           : "#22af56be",
+const priorityColors: Record<ProyectPriority, string> = {
+  emergency     : "#ce1515ab",
+  high          : "#daa13ea1",
+  medium        : "#22af56be",
+  low           : "#1563c9be",
 };
 
-const statusLabels: Record<TaskStatus, string> = {
-  todo          : "Por hacer",
+const statusLabels: Record<ProyectStatus, string> = {
+  backlog       : "Backlog",
   in_progress   : "En progreso",
-  paused        : "Pausada",
-  done          : "Completada",
-  cancelled     : "Cancelada",
+  In_review     : "En revisión",
+  In_test       : "En pruebas",
+  cancelled     : "Cancelado",
+  completed     : "Completado",
 };
 
-interface TaskCardProps {
-  task          : Task;
-  onStatusChange?: (taskId: string, newStatus: TaskStatus) => void;
+interface ProyectCardProps {
+  proyect       : Proyect;
+  onStatusChange?: (proyectId: string, newStatus: ProyectStatus) => void;
 }
 
-export function TaskCard({ task }: TaskCardProps) {
+export function ProyectCard({ proyect }: ProyectCardProps) {
   const { 
     formattedCreatedAt, 
     formattedDeadline, 
     deadlineColor 
-  } = useTaskDateStatus(task.createdAt, task.deadline, task.status);
+  } = useProyectDateStatus(proyect.createdAt, proyect.deadline, proyect.status);
 
   return (
     <div
       style={{
         border: "1px solid #e2e8f0",
-        borderLeft: `4px solid ${priorityColors[task.priority]}`,
+        borderLeft: `4px solid ${priorityColors[proyect.priority]}`,
         borderRadius: "8px",
         padding: "16px",
         marginBottom: "8px",
@@ -46,7 +47,7 @@ export function TaskCard({ task }: TaskCardProps) {
           alignItems: "start",
         }}
       >
-        <h3 style={{ margin: 0, fontSize: "16px" }}>{task.title}</h3>
+        <h3 style={{ margin: 0, fontSize: "16px" }}>{proyect.title}</h3>
         <span
           style={{
             fontSize: "12px",
@@ -55,11 +56,11 @@ export function TaskCard({ task }: TaskCardProps) {
             backgroundColor: "#f1f5f9",
           }}
         >
-          {statusLabels[task.status]}
+          {statusLabels[proyect.status]}
         </span>
       </div>
       <p style={{ color: "#64748b", fontSize: "14px", margin: "8px 0" }}>
-        {task.description}
+        {proyect.description}
       </p>
       <div
         style={{
@@ -69,7 +70,7 @@ export function TaskCard({ task }: TaskCardProps) {
           color: "#94a3b8",
         }}
       >
-        <span>{task.project}</span>
+        <span>{proyect.project}</span>
         <div style={{ display: "flex", gap: "12px" }}>
           <span><strong>Creado:</strong> {formattedCreatedAt}</span>
           <span style={{ color: deadlineColor }}>
