@@ -4,6 +4,7 @@ import { Layout } from "./shared/components/Layout";
 import Tabs from "./shared/components/Tabs";
 import { TaskBoard } from "./taskManagement/components/TaskBoard";
 import { TaskListContainer } from "./taskManagement/components/TaskListContainer";
+import { StatisticsDashboard } from "./statistics/components/StatisticsDashboard";
 
 function App() {
   return (
@@ -34,11 +35,7 @@ function App() {
             <ProyectListContainer />
           </Tabs.Panel>
           <Tabs.Panel id="stats">
-            <p
-              style={{ color: "#94a3b8", padding: "32px", textAlign: "center" }}
-            >
-              Próximamente: Estadísticas
-            </p>
+            <StatisticsDashboard />
           </Tabs.Panel>
         </Tabs.Panels>
       </Tabs>
