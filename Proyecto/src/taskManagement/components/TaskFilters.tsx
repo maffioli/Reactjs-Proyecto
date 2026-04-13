@@ -26,7 +26,7 @@ export function TaskFilters({ current, onChange }: TaskFiltersProps) {
   return (
     <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
       {filters.map((filt) => (
-        <Button
+        <Button size="md" variant="secondary"
           key={filt.value}
           onClick={() => onChange(filt.value)}
           isActive={current === filt.value}

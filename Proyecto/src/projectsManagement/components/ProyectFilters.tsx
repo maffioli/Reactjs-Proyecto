@@ -30,7 +30,7 @@ export function ProyectFilters({ current, onChange }: ProyectFiltersProps) {
   return (
     <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
       {filters.map((filt) => (
-        <Button
+        <Button size="sm" variant="primary"
           key={filt.value}
           onClick={() => onChange(filt.value)}
           isActive={current === filt.value}
