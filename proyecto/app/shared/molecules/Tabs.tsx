@@ -6,10 +6,12 @@ import {
   useMemo,
   type ReactNode,
 } from "react";
+import { TabLoadingView } from "./TabLoadingView";
 
 interface TabsContextType {
   activeTab: string;
   setActiveTab: (id: string) => void;
+  isLoading: boolean;
 }
 
 const TabsContext = createContext<TabsContextType | undefined>(undefined);
@@ -32,7 +34,21 @@ interface TabsProps {
 
 export const Tabs = ({ defaultTab, children }: TabsProps) => {
   const [activeTab, setActiveTab] = useState(defaultTab);
-  const value = useMemo(() => ({ activeTab, setActiveTab }), [activeTab]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleTabChange = (id: string) => {
+    if (id === activeTab) return;
+    
+    setIsLoading(true);
+    setActiveTab(id);
+
+    // Simulamos la carga por 1 segundo
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const value = useMemo(() => ({ activeTab, setActiveTab: handleTabChange, isLoading }), [activeTab, isLoading]);
 
   return (
     <TabsContext.Provider value={value}>
@@ -97,11 +113,13 @@ const Content = ({ id, children }: {
   /** Elementos o componentes que se renderizan dentro de esta pestaña */
   children: ReactNode 
 }) => {
-  const { activeTab } = useTabsContext();
+  const { activeTab, isLoading } = useTabsContext();
+  
   if (activeTab !== id) return null;
+
   return (
     <div role="tabpanel" aria-labelledby={id} style={{ padding: "16px 0" }}>
-      {children}
+      {isLoading ? <TabLoadingView /> : children}
     </div>
   );
 };
