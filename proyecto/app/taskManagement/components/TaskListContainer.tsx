@@ -1,6 +1,7 @@
+"use client";
 import { useState, useMemo } from "react";
 import { fixturesTasks } from "../utils/fixturesTask";
-import type { Task } from "@task/types";
+import type { Task } from "@tasks/types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
 

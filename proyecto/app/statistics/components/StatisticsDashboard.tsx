@@ -1,3 +1,4 @@
+"use client";
 import { useStatistics } from "@/statistics/hooks/useStatistics";
 
 export const StatisticsDashboard = () => {

@@ -1,4 +1,4 @@
-import type { TaskStatus } from "@task/types";
+import type { TaskStatus } from "@tasks/types";
 import { Button } from "@/shared";
 
 type FilterValue = TaskStatus | "all";

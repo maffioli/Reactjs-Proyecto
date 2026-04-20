@@ -1,3 +1,4 @@
+"use client";
 import { useProyectDateStatus } from "../hooks/useProyectDateStatus";
 import type { Proyect, ProyectPriority, ProyectStatus } from "@projects/types";
 import { Card } from "@/shared";

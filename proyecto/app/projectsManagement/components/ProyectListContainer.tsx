@@ -1,5 +1,5 @@
+"use client";
 import { useState, useMemo } from "react";
-
 import type { Proyect } from "@projects/types";
 import { ProyectCard } from "./ProyectCard";
 import { ProyectFilters } from "./ProyectFilters";

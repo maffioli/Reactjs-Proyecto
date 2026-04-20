@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { Task, TaskStatus } from '@task/types';
+import type { Task, TaskStatus } from '@tasks/types';
 import { fixturesTasks } from '../utils/fixturesTask';
 
 export const useTasks = () => {

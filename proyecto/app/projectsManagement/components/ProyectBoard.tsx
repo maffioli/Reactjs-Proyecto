@@ -1,3 +1,4 @@
+"use client";
 import { useProyect } from "../hooks/useProyect";
 import { ProyectCard } from "./ProyectCard";
 

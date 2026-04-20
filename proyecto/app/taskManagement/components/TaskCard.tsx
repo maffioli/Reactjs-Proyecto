@@ -1,3 +1,4 @@
+"use client";
 import type { Task, TaskStatus, TaskPriority } from "../types";
 import { useTaskDateStatus } from "@/taskManagement/hooks/useTaskDateStatus";
 import { Card } from "@/shared";
