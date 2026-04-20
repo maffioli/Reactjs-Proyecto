@@ -9,6 +9,7 @@ interface CardProps {
   accentColor?: string;
   footerLeft?: React.ReactNode;
   footerRight?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const Card = ({
@@ -18,6 +19,7 @@ export const Card = ({
   accentColor = "#e2e8f0",
   footerLeft,
   footerRight,
+  children,
 }: CardProps) => {
   return (
     <div
@@ -56,6 +58,7 @@ export const Card = ({
           {footerRight}
         </div>
       </div>
+      {children && <div style={{ marginTop: 12 }}>{children}</div>}
     </div>
   );
 };

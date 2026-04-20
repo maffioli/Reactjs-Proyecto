@@ -1,4 +1,4 @@
-import type { Task } from "@task/types";
+import type { Task } from "@tasks/types";
 import { fixturesProyects as projectFixtures } from "../../projectsManagement/utils/fixturesProyect";
 
 export const fixturesTasks: Task[] = [

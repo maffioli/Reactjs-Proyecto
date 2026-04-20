@@ -5,7 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Indica si el botón debe mostrarse con el estilo de 'seleccionado' */
   isActive?: boolean;
   /** Variante visual del botón */
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "success" | "danger";
   /** Tamaño del botón */
   size?: "sm" | "md" | "lg";
   /** Texto o elementos que van dentro del botón */
@@ -31,6 +31,16 @@ export const Button = ({
       backgroundColor: isActive ? "#eff6ff" : "#fff",
       color: isActive ? "#3b82f6" : "#64748b",
       border: isActive ? "2px solid #3b82f6" : "1px solid #e2e8f0",
+    },
+    success: {
+      backgroundColor: isActive ? "#bbf7d0" : "#22c55e",
+      color: isActive ? "#166534" : "#fff",
+      border: isActive ? "2px solid #16a34a" : "1px solid #22c55e",
+    },
+    danger: {
+      backgroundColor: isActive ? "#fecaca" : "#ef4444",
+      color: isActive ? "#991b1b" : "#fff",
+      border: isActive ? "2px solid #b91c1c" : "1px solid #ef4444",
     },
   };
 

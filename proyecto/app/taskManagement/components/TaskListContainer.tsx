@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from "react";
-import { fixturesTasks } from "../utils/fixturesTask";
+import { fixturesTasks } from "@tasks/utils/fixturesTask";
 import type { Task } from "@tasks/types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
@@ -8,8 +8,40 @@ import { TaskFilters } from "./TaskFilters";
 type FilterValue = "all" | Task["status"];
 
 export function TaskListContainer() {
-  const [tasks] = useState<Task[]>(fixturesTasks);
+  const [tasks, setTasks] = useState<Task[]>(fixturesTasks);
   const [filter, setFilter] = useState<FilterValue>("all");
+
+  const addTask = (task: Task) => {
+    setTasks((prev) => [...prev, task]);
+  };
+
+  const deleteTask = (taskId: string) => {
+    setTasks((prev) => prev.filter((t) => t.id !== taskId));
+  };
+
+  const updateTask = (taskId: string, updatedFields: Partial<Task>) => {
+    setTasks((prev) =>
+      prev.map((t) =>
+        t.id === taskId
+          ? {
+              ...t,
+              ...updatedFields,
+              description:
+                updatedFields.description !== undefined
+                  ? updatedFields.description
+                  : t.description,
+            }
+          : t
+      )
+    );
+  };
+
+  const markComplete = (taskId: string) => {
+    setTasks((prev) => prev.map((t) => t.id === taskId ? { ...t, status: "done" } : t));
+  };
+
+
+  const pendingTasks = useMemo(() => tasks.filter((t) => t.status !== "done"), [tasks]);
 
   const filteredTasks = useMemo(
     () => (filter === "all" ? tasks : tasks.filter((t) => t.status === filter)),
@@ -39,7 +71,15 @@ export function TaskListContainer() {
           No hay tareas con este filtro.
         </p>
       ) : (
-        filteredTasks.map((task) => <TaskCard key={task.id} task={task} />)
+        filteredTasks.map((task) => (
+          <TaskCard
+            key={task.id}
+            task={task}
+            onDelete={() => deleteTask(task.id)}
+            onUpdate={(fields) => updateTask(task.id, fields)}
+            onMarkComplete={() => markComplete(task.id)}
+          />
+        ))
       )}
     </div>
   );
