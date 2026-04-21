@@ -1,45 +1,32 @@
 "use client";
 import { useState, useMemo } from "react";
-import { fixturesTasks } from "@tasks/utils/fixturesTask";
 import type { Task } from "@tasks/types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
+import { useTaskState, useTaskDispatch } from "@tasks/context/TaskContext";
 
 type FilterValue = "all" | Task["status"];
 
 export function TaskListContainer() {
-  const [tasks, setTasks] = useState<Task[]>(fixturesTasks);
+  const tasks = useTaskState();
+  const dispatch = useTaskDispatch();
   const [filter, setFilter] = useState<FilterValue>("all");
 
   const addTask = (task: Task) => {
-    setTasks((prev) => [...prev, task]);
+    dispatch({ type: "ADD_TASK", payload: task });
   };
 
   const deleteTask = (taskId: string) => {
-    setTasks((prev) => prev.filter((t) => t.id !== taskId));
+    dispatch({ type: "DELETE_TASK", payload: taskId });
   };
 
   const updateTask = (taskId: string, updatedFields: Partial<Task>) => {
-    setTasks((prev) =>
-      prev.map((t) =>
-        t.id === taskId
-          ? {
-              ...t,
-              ...updatedFields,
-              description:
-                updatedFields.description !== undefined
-                  ? updatedFields.description
-                  : t.description,
-            }
-          : t
-      )
-    );
+    dispatch({ type: "UPDATE_TASK", payload: { id: taskId, updatedFields } });
   };
 
   const markComplete = (taskId: string) => {
-    setTasks((prev) => prev.map((t) => t.id === taskId ? { ...t, status: "done" } : t));
+    dispatch({ type: "MARK_COMPLETE", payload: taskId });
   };
-
 
   const pendingTasks = useMemo(() => tasks.filter((t) => t.status !== "done"), [tasks]);
 

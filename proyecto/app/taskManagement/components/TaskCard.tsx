@@ -32,7 +32,7 @@ export function TaskCard({ task, onDelete, onUpdate, onMarkComplete }: TaskCardP
     formattedCreatedAt, 
     formattedDeadline, 
     deadlineColor 
-  } = useTaskDateStatus(task.createdAt, task.deadline, task.status);
+  } = useTaskDateStatus(task);
 
   return (
     <Card

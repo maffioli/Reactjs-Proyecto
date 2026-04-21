@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { TaskProvider } from "@tasks/context/TaskContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,9 +46,11 @@ export default function RootLayout({
             <span>Proyectos</span>
           </nav>
         </header>
-        <main style={{ maxWidth: "960px", margin: "0 auto", padding: "24px" }}>
-          {children}
-        </main>
+        <TaskProvider>
+          <main style={{ maxWidth: "960px", margin: "0 auto", padding: "24px" }}>
+            {children}
+          </main>
+        </TaskProvider>
       </body>
     </html>
   );

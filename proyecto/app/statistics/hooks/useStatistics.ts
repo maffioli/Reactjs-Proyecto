@@ -1,10 +1,12 @@
+
 import { useMemo } from 'react';
-import { fixturesTasks } from '../../taskManagement/utils/fixturesTask';
+import { useTaskState } from '../../taskManagement/context/TaskContext';
 import { fixturesProyects as projectFixtures } from '../../projectsManagement/utils/fixturesProyect';
 import type { GlobalStatistics } from '@statistics/types';
 
 export const useStatistics = (): GlobalStatistics => {
   const TODAY = new Date("2026-04-12T00:00:00Z");
+  const tasks = useTaskState();
 
   return useMemo(() => {
     // Estadísticas de Proyectos
@@ -21,23 +23,23 @@ export const useStatistics = (): GlobalStatistics => {
 
     // Estadísticas de Tareas
     const taskStats = {
-      total: fixturesTasks.length,
-      byStatus: fixturesTasks.reduce((acc, t) => {
+      total: tasks.length,
+      byStatus: tasks.reduce((acc, t) => {
         acc[t.status] = (acc[t.status] || 0) + 1;
         return acc;
       }, {} as Record<string, number>),
-      byPriority: fixturesTasks.reduce((acc, t) => {
+      byPriority: tasks.reduce((acc, t) => {
         acc[t.priority] = (acc[t.priority] || 0) + 1;
         return acc;
       }, {} as Record<string, number>),
-      overdueCount: fixturesTasks.filter(t => 
+      overdueCount: tasks.filter(t => 
         new Date(t.deadline) < TODAY && t.status !== 'done' && t.status !== 'cancelled'
       ).length
     };
 
     // Progreso Global (Tareas terminadas vs total)
-    const overallProgress = Math.round(
-      (fixturesTasks.filter(t => t.status === 'done').length / fixturesTasks.length) * 100
+    const overallProgress = tasks.length === 0 ? 0 : Math.round(
+      (tasks.filter(t => t.status === 'done').length / tasks.length) * 100
     );
 
     return {
@@ -45,5 +47,5 @@ export const useStatistics = (): GlobalStatistics => {
       tasks: taskStats,
       overallProgress
     };
-  }, []);
+  }, [tasks]);
 };

@@ -1,16 +1,13 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import type { Task, TaskStatus } from '@tasks/types';
-import { fixturesTasks } from '../utils/fixturesTask';
+import { useTaskState, useTaskDispatch } from '../context/TaskContext';
 
 export const useTasks = () => {
-  const [tasks, setTasks] = useState<Task[]>(fixturesTasks);
+  const tasks = useTaskState();
+  const dispatch = useTaskDispatch();
 
   const updateTaskStatus = (taskId: string, newStatus: TaskStatus) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, status: newStatus } : task
-      )
-    );
+    dispatch({ type: 'UPDATE_TASK', payload: { id: taskId, updatedFields: { status: newStatus } } });
   };
 
   // Podríamos agregar filtros por prioridad o proyecto aquí
@@ -18,5 +15,5 @@ export const useTasks = () => {
   const inProgressTasks = useMemo(() => tasks.filter(t => t.status === 'in_progress').slice(0, 2), [tasks]);
   const doneTasks = useMemo(() => tasks.filter(t => t.status === 'done').slice(0, 2), [tasks]);
 
-  return { tasks, updateTaskStatus, todoTasks, inProgressTasks, doneTasks };
+  return { tasks, updateTaskStatus, todoTasks, inProgressTasks, doneTasks, dispatch };
 };
