@@ -45,5 +45,63 @@ El sistema permite trackear puntos críticos del workflow para optimizar tiempos
 Si querés probar el entorno localmente:
 
 1. **Cloná el repositorio:**
-   ```bash
-   git clone [https://github.com/maffioli/Reactjs-Proyecto.git](https://github.com/maffioli/Reactjs-Proyecto.git)
+  ```bash
+  git clone https://github.com/maffioli/Reactjs-Proyecto.git
+  cd Reactjs-Proyecto/proyecto
+  ```
+
+2. **Instalá las dependencias:**
+  ```bash
+  npm install
+  ```
+
+3. **Iniciá el servidor de desarrollo:**
+  ```bash
+  npm run dev
+  ```
+
+---
+
+## 🧪 Testing con Vitest
+
+El proyecto utiliza [Vitest](https://vitest.dev/) junto a [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) y [@testing-library/jest-dom](https://github.com/testing-library/jest-dom) para pruebas unitarias y de integración.
+
+### Configuración relevante:
+
+- **Alias de paths:** Se usa `vite-tsconfig-paths` para que los imports con alias funcionen en los tests.
+- **Matchers de jest-dom:** Se cargan automáticamente desde `vitest.setup.ts`.
+- **Ambiente jsdom:** Configurado en `vitest.config.ts`.
+
+### Comandos útiles:
+
+- **Correr todos los tests:**
+  ```bash
+  npm run test
+  ```
+
+- **Correr tests en modo watch:**
+  ```bash
+  npm run test:watch
+  ```
+
+### Archivos clave:
+
+- `vitest.config.ts`: Configuración de Vitest, setupFiles y alias.
+- `vitest.setup.ts`: Setup para jest-dom.
+
+Si encontrás errores de imports o matchers, asegurate de tener instalados:
+
+```bash
+npm install -D vitest @testing-library/react @testing-library/jest-dom vite-tsconfig-paths
+```
+
+---
+
+## 📂 Estructura relevante para testing
+
+- `__tests__/`: Pruebas unitarias e integración.
+- `app/taskManagement/components/`, `app/taskManagement/hooks/`: Componentes y hooks testeados.
+
+---
+
+Para cualquier duda sobre testing o configuración, revisá los archivos mencionados o consultá en Issues.
