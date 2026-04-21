@@ -22,21 +22,32 @@ export function useTaskForm() {
     deadline: '',
   });
   const [error, setError] = useState<string | null>(null);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
+    setTouched(prev => ({ ...prev, [name]: true }));
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     if (!form.title.trim() || !form.description.trim() || !form.deadline) {
       setError('Todos los campos son obligatorios');
+      setIsSubmitting(false);
       return;
     }
     const project = fixturesProyects.find(p => p.id === form.projectId);
     if (!project) {
       setError('Proyecto inválido');
+      setIsSubmitting(false);
       return;
     }
     const newTask: Task = {
@@ -59,12 +70,24 @@ export function useTaskForm() {
       deadline: '',
     });
     setError(null);
+    setIsSubmitting(false);
   };
+
+  // Validaciones por campo
+  const errors: Partial<typeof form> = {};
+  if (touched.title && !form.title.trim()) errors.title = 'El título es obligatorio';
+  if (touched.description && !form.description.trim()) errors.description = 'La descripción es obligatoria';
+  if (touched.deadline && !form.deadline) errors.deadline = 'La fecha límite es obligatoria';
+  if (touched.projectId && !form.projectId) errors.projectId = 'El proyecto es obligatorio';
 
   return {
     form,
     error,
+    errors,
+    touched,
+    isSubmitting,
     handleChange,
+    handleBlur,
     handleSubmit,
     projects: fixturesProyects,
     statuses: Object.values(TASK_STATUSES),
