@@ -4,6 +4,7 @@ import type { Task } from "@tasks/types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
 import { useTaskState, useTaskDispatch } from "@tasks/context/TaskContext";
+import { TaskNewContainer } from "@tasks/components/TaskNewContainer";
 
 type FilterValue = "all" | Task["status"];
 
@@ -52,6 +53,7 @@ export function TaskListContainer() {
           Tareas ({filteredCount}/{totalCount})
         </h2>
       </div>
+      <TaskNewContainer />
       <TaskFilters current={filter} onChange={setFilter} />
       {filteredTasks.length === 0 ? (
         <p style={{ color: "#94a3b8", textAlign: "center", padding: "32px" }}>
