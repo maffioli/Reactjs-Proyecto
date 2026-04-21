@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { Task } from "@tasks/types";
 import { TaskCard } from "./TaskCard";
 import { TaskFilters } from "./TaskFilters";
@@ -13,21 +13,24 @@ export function TaskListContainer() {
   const dispatch = useTaskDispatch();
   const [filter, setFilter] = useState<FilterValue>("all");
 
-  const addTask = (task: Task) => {
+  const addTask = useCallback((task: Task) => {
     dispatch({ type: "ADD_TASK", payload: task });
-  };
+  }, [dispatch]);
 
-  const deleteTask = (taskId: string) => {
+  const deleteTask = useCallback((taskId: string) => {
     dispatch({ type: "DELETE_TASK", payload: taskId });
-  };
+  }, [dispatch]);
 
-  const updateTask = (taskId: string, updatedFields: Partial<Task>) => {
-    dispatch({ type: "UPDATE_TASK", payload: { id: taskId, updatedFields } });
-  };
+  const updateTask = useCallback(
+    (taskId: string, updatedFields: Partial<Task>) => {
+      dispatch({ type: "UPDATE_TASK", payload: { id: taskId, updatedFields } });
+    },
+    [dispatch],
+  );
 
-  const markComplete = (taskId: string) => {
+  const markComplete = useCallback((taskId: string) => {
     dispatch({ type: "MARK_COMPLETE", payload: taskId });
-  };
+  }, [dispatch]);
 
   const pendingTasks = useMemo(() => tasks.filter((t) => t.status !== "done"), [tasks]);
 

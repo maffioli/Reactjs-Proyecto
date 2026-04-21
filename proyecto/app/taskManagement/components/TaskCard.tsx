@@ -2,6 +2,7 @@
 import type { Task, TaskStatus, TaskPriority } from "../types";
 import { useTaskDateStatus } from "@/taskManagement/hooks/useTaskDateStatus";
 import { Card } from "@/shared";
+import React from "react";
 
 const priorityColors: Record<TaskPriority, string> = {
   high          : "#ce1515ab",
@@ -27,7 +28,7 @@ interface TaskCardProps {
 
 import { Button } from "@/shared";
 
-export function TaskCard({ task, onDelete, onUpdate, onMarkComplete }: TaskCardProps) {
+export const TaskCard = React.memo(function TaskCard({ task, onDelete, onUpdate, onMarkComplete }: TaskCardProps) {
   const { 
     formattedCreatedAt, 
     formattedDeadline, 
@@ -77,4 +78,4 @@ export function TaskCard({ task, onDelete, onUpdate, onMarkComplete }: TaskCardP
       </div>
     </Card>
   );
-}
+});

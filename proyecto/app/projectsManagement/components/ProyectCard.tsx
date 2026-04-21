@@ -2,6 +2,7 @@
 import { useProyectDateStatus } from "../hooks/useProyectDateStatus";
 import type { Proyect, ProyectPriority, ProyectStatus } from "@projects/types";
 import { Card } from "@/shared";
+import React from "react";
 
 const priorityColors: Record<ProyectPriority, string> = {
   emergency     : "#ce1515ab",
@@ -27,7 +28,7 @@ interface ProyectCardProps {
   onStatusChange?: (proyectId: string, newStatus: ProyectStatus) => void;
 }
 
-export function ProyectCard({ proyect }: ProyectCardProps) {
+export const ProyectCard = React.memo(function ProyectCard({ proyect }: ProyectCardProps) {
   const { 
     formattedCreatedAt, 
     formattedDeadline, 
@@ -51,4 +52,4 @@ export function ProyectCard({ proyect }: ProyectCardProps) {
       }
     />
   );
-}
+});
